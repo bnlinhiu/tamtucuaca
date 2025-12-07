@@ -4,40 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nhật Ký Online</title>
+
+    <!-- Style tinh gọn nhưng đẹp hơn bản gốc -->
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background: #f4f4f4; }
-        h1 { color: #333; }
-        textarea { width: 90%; height: 200px; padding: 10px; font-size: 16px; border: 1px solid #ccc; }
-        button { margin-top: 10px; padding: 10px 20px; font-size: 16px; background: #28a745; color: white; border: none; cursor: pointer; }
-        button:hover { background: #218838; }
-        #log { margin-top: 20px; font-size: 14px; color: gray; }
-        #content { white-space: pre-wrap; text-align: left; background: white; padding: 10px; margin: 10px auto; width: 80%; border-radius: 5px; border: 1px solid #ddd; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 20px;
+            background: #eef1f4;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 95%;
+            max-width: 700px;
+            height: 180px;
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 10px 24px;
+            background: #28a745;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        #content {
+            margin: 20px auto;
+            width: 95%;
+            max-width: 700px;
+            background: white;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+            white-space: pre-wrap;
+            font-size: 15px;
+        }
+
+        #log {
+            margin-top: 8px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .timestamp {
+            color: #888;
+            font-size: 14px;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
     <h1>Nhật Ký Online</h1>
+
     <textarea id="entry" placeholder="Viết gì đó..."></textarea><br>
-    <button onclick="saveEntry()">Lưu</button>
+    <button onclick="saveEntry()">Lưu nhật ký</button>
+
+    <p id="log"></p>
 
     <h2>Tâm tư mới nhất:</h2>
     <div id="content">Chưa có nội dung...</div>
-    <p id="log"></p>
 
     <script>
-        async function saveEntry() {
-            let text = document.getElementById("entry").value;
-            let time = new Date().toLocaleString();
+        function saveEntry() {
+            let text = document.getElementById("entry").value.trim();
+            if (text === "") {
+                document.getElementById("log").innerText = "⚠ Hãy viết gì đó trước khi lưu.";
+                return;
+            }
+
+            let time = new Date().toLocaleString("vi-VN");
             let data = { content: text, timestamp: time };
 
             localStorage.setItem("entry", JSON.stringify(data));
+
+            document.getElementById("entry").value = ""; // tự xoá sau khi lưu
             showEntry();
+            document.getElementById("log").innerText = "✔ Đã lưu!";
         }
 
         function showEntry() {
             let saved = localStorage.getItem("entry");
             if (saved) {
                 let data = JSON.parse(saved);
-                document.getElementById("content").innerHTML = `<strong>${data.timestamp}</strong><br>${data.content}`;
+                document.getElementById("content").innerHTML =
+                    `<div class='timestamp'>${data.timestamp}</div>\n${data.content}`;
             }
         }
 
