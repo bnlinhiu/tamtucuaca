@@ -48,4 +48,5 @@ textarea {
 }
 
 textarea:focus {
-    border-col
+    border-color: #ff6b88;
+}
