@@ -3,7 +3,7 @@
 
 Tamtucuaca là một mini-blog cá nhân nơi người dùng có thể:
 - Viết nhật ký, tâm sự, suy nghĩ riêng tư
-- Không cần tài khoản, không login
+- Không cần tài khoản, không cần đăng nhập
 - Ẩn danh hoàn toàn
 - Lịch sử bài viết được lưu trực tiếp trên trình duyệt thông qua `localStorage`
 - Không gửi dữ liệu lên server
@@ -24,26 +24,25 @@ Tamtucuaca là một mini-blog cá nhân nơi người dùng có thể:
 
 ## 🗂 Cấu trúc thư mục
 
+```
 tamtucuaca/
 │
-├── index.html # Giao diện và logic mini-blog
+├── index.html         # Giao diện và logic mini-blog
 ├── README.md
 ├── LICENSE
 │
 ├── css/
-│ └── style.css # (Nếu bạn tách CSS riêng – hiện đang để inline)
+│   └── style.css      # (Nếu bạn tách CSS riêng – hiện đang để inline)
 │
 ├── js/
-│ └── app.js # (Tùy chọn – nếu bạn muốn tách JS ra khỏi HTML)
+│   └── app.js         # (Tùy chọn – nếu bạn muốn tách JS ra khỏi HTML)
 │
 └── .github/
-├── ISSUE_TEMPLATE.md
-└── PULL_REQUEST_TEMPLATE.md
+    ├── ISSUE_TEMPLATE.md
+    └── PULL_REQUEST_TEMPLATE.md
+```
 
-
-Copy code
-
-> Lưu ý: Hiện tại dự án đang dùng **CSS & JS bên trong index.html** luôn,  
+> **Lưu ý:** Hiện tại dự án đang dùng **CSS & JS bên trong index.html** luôn,  
 > bạn có thể tách ra sau này nếu muốn project sạch hơn.
 
 ---
@@ -51,12 +50,8 @@ Copy code
 ## 🚀 Cách sử dụng
 
 ### 1. Chạy tại máy cá nhân
-Chỉ cần mở file:
 
-index.html
-
-Copy code
-
+Chỉ cần mở file `index.html`  
 Là dùng được ngay.  
 Không cần cài đặt – không cần internet – không cần server.
 
@@ -72,9 +67,9 @@ Không cần cài đặt – không cần internet – không cần server.
 
 Trang web sẽ xuất hiện tại:
 
+```
 https://<username>.github.io/tamtucuaca/
-
-Copy code
+```
 
 ---
 
@@ -112,14 +107,12 @@ Mọi đóng góp cho dự án đều được chào đón!
 
 ## 📜 Giấy phép
 
-Dự án phát hành theo **MIT License**.  
+Dự án phát hành theo [MIT License](LICENSE).  
 Bạn toàn quyền sử dụng – chỉnh sửa – chia sẻ – phát triển tiếp.
 
 ---
 
 ## 👑 Tác giả
-Dự án phát triển bởi **Huy – ISC International Science Center**.  
-Mục tiêu: tạo một góc nhỏ an toàn cho mỗi người để viết ra điều mình nghĩ.
 
 Dự án phát triển bởi **Huy – ISC International Science Center**.  
 Mục tiêu: tạo một góc nhỏ an toàn cho mỗi người để viết ra điều mình nghĩ.
