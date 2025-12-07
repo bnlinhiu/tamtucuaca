@@ -2,23 +2,46 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Tâm tư của cá</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhật Ký Online</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background: #f4f4f4; }
+        h1 { color: #333; }
+        textarea { width: 90%; height: 200px; padding: 10px; font-size: 16px; border: 1px solid #ccc; }
+        button { margin-top: 10px; padding: 10px 20px; font-size: 16px; background: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background: #218838; }
+        #log { margin-top: 20px; font-size: 14px; color: gray; }
+        #content { white-space: pre-wrap; text-align: left; background: white; padding: 10px; margin: 10px auto; width: 80%; border-radius: 5px; border: 1px solid #ddd; }
+    </style>
 </head>
-
 <body>
-    <div class="container">
-        <h2>Tâm tư của cá 🐟</h2>
-        <div id="chatbox"></div>
+    <h1>Nhật Ký Online</h1>
+    <textarea id="entry" placeholder="Viết gì đó..."></textarea><br>
+    <button onclick="saveEntry()">Lưu</button>
 
-        <div class="input-area">
-            <input id="msg" type="text" placeholder="Nhập tin nhắn…">
-            <button onclick="sendMessage()">Gửi</button>
-        </div>
+    <h2>Tâm tư mới nhất:</h2>
+    <div id="content">Chưa có nội dung...</div>
+    <p id="log"></p>
 
-        <button class="clear" onclick="clearHistory()">🗑 Xóa lịch sử</button>
-    </div>
+    <script>
+        async function saveEntry() {
+            let text = document.getElementById("entry").value;
+            let time = new Date().toLocaleString();
+            let data = { content: text, timestamp: time };
 
-    <script src="js/app.js"></script>
+            localStorage.setItem("entry", JSON.stringify(data));
+            showEntry();
+        }
+
+        function showEntry() {
+            let saved = localStorage.getItem("entry");
+            if (saved) {
+                let data = JSON.parse(saved);
+                document.getElementById("content").innerHTML = `<strong>${data.timestamp}</strong><br>${data.content}`;
+            }
+        }
+
+        window.onload = showEntry;
+    </script>
 </body>
 </html>
